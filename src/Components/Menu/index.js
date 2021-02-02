@@ -1,0 +1,42 @@
+import s from './style.module.css'
+import { useState } from 'react';
+import cn from 'classnames';
+
+const Menu = () => {
+    const [isActive, setActive] = useState(false);
+    const handleClick = () => {
+        setActive(!isActive);
+    }
+    return (
+        <div className={s.container} onClick={handleClick}>
+            <div className={s.overlay} />
+            <div className="menuItems">
+                <ul>
+                <li>
+                    <a href="#welcome">
+                    HOME
+                    </a>
+                </li>
+                <li>
+                    <a href="#game">
+                    GAME
+                    </a>
+                </li>
+                <li>
+                    <a href="#about">
+                    ABOUT
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                    CONTACT
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    )
+
+};
+
+export default Menu;
