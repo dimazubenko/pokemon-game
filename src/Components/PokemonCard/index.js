@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import s from './style.module.css';
 import cardBackSide from '../../assets/card-back-side.jpg';
+import cn from 'classnames'; //Ставить последним к цепочке импортов
 
-const PokemonCard = ({name, img, id, type, values}) => {
+//вместо такой записи тернарной операции{[s.pokemonCard, isActive ? s.active : ''].join(' ')}
+const PokemonCard = ({name, img, id, type, values }) => {
     const [isActive, setActive] = useState(false);
     const handleClick = () => {
-        setActive(true);
+        setActive(!isActive);
     }
     return(
         <div className={s.root} onClick={handleClick}>
-            <div className={[s.pokemonCard, isActive ? s.active : ''].join(' ')}>
+            <div className={cn(s.pokemonCard, {[s.active]: isActive})}> 
                 <div className={s.cardFront}>
-                    <div className={[s.wrap, s.front].join(' ')}>
-                        <div className={[s.pokemon, s[type]].join(' ')}>
+                    <div className={cn(s.wrap, s.front)}>
+                        <div className={cn(s.pokemon, s[type])}>
                             <div className={s.values}>
-                                <div className={[s.count, s.top].join(' ')}>{ values.top }</div>
-                                <div className={[s.count, s.right].join(' ')}>{ values.right }</div>
-                                <div className={[s.count, s.bottom].join(' ')}>{ values.bottom }</div>
-                                <div className={[s.count, s.left].join(' ')}>{ values.bottom }</div>
+                                <div className={cn(s.count, s.top)}>{ values.top }</div>
+                                <div className={cn(s.count, s.right)}>{ values.right }</div>
+                                <div className={cn(s.count, s.bottom)}>{ values.bottom }</div>
+                                <div className={cn(s.count, s.left)}>{ values.bottom }</div>
                             </div>
                             <div className={s.imgContainer}>
                                 <img src={ img } alt={ name } />
@@ -34,7 +36,7 @@ const PokemonCard = ({name, img, id, type, values}) => {
                 </div>
 
                 <div className={s.cardBack}>
-                    <div className={[s.wrap, s.back].join(' ')}>
+                    <div className={cn(s.wrap, s.back)}>
                         <img src={ cardBackSide } alt="Сard Backed" />
                     </div>
                 </div>
