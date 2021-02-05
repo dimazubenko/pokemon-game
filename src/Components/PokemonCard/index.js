@@ -1,17 +1,14 @@
-import { useState } from 'react';
 import s from './style.module.css';
 import cardBackSide from '../../assets/card-back-side.jpg';
 import cn from 'classnames'; //Ставить последним к цепочке импортов
 
 //вместо такой записи тернарной операции{[s.pokemonCard, isActive ? s.active : ''].join(' ')}
-const PokemonCard = ({name, img, id, type, values }) => {
-    const [isActive, setActive] = useState(false);
-    const handleClick = () => {
-        setActive(!isActive);
-    }
+const PokemonCard = ({name, img, id, type, values, isActive, onClick }) => {
+    
+
     return(
-        <div className={s.root} onClick={handleClick}>
-            <div className={cn(s.pokemonCard, {[s.active]: isActive})}> 
+        <div className={s.root} onClick={onClick}>
+            <div className={cn(s.pokemonCard, {[s.active] : isActive})}> 
                 <div className={s.cardFront}>
                     <div className={cn(s.wrap, s.front)}>
                         <div className={cn(s.pokemon, s[type])}>
